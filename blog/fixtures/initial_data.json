@@ -1,0 +1,68 @@
+[
+  {
+    "fields": {
+      "name": "Linux",
+      "description": "NULL"
+    },
+    "model": "blog.tag",
+    "pk": 1
+  },
+  {
+    "fields": {
+      "name": "生活",
+      "description": "生活点滴"
+    },
+    "model": "blog.tag",
+    "pk": 2
+  },
+  {
+    "fields": {
+      "name": "Django",
+      "description": "a web framework in python"
+    },
+    "model": "blog.tag",
+    "pk": 3
+  },
+  {
+    "fields": {
+      "name": "Python",
+      "description": "a programming language"
+    },
+    "model": "blog.tag",
+    "pk": 4
+  },
+  
+  {
+    "fields": {
+      "name": "技术",
+      "description": "技术文章"
+    },
+    "model": "blog.category",
+    "pk": 1
+  },
+  {
+    "fields": {
+      "name": "日记",
+      "description": "记录生活点滴"
+    },
+    "model": "blog.category",
+    "pk": 2
+  },
+  {
+    "fields": {
+      "name": "折腾",
+      "description": "逆流而上"
+    },
+    "model": "blog.category",
+    "pk": 3
+  },
+  {
+    "fields": {
+      "name": "Python",
+      "description": "人生苦短, 我用Python"
+    },
+    "model": "blog.category",
+    "pk": 4
+  },
+  
+]

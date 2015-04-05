@@ -1,0 +1,36 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+    {{ config.name|default:"404" }} | 独语者
+{% endblock %}
+
+{% block header %}
+  <header class="main-header no-cover">
+    <div class="vertical">
+      <div class="main-header-content inner">
+        <h1 class="page-title">{{ config.name|default:"404" }}</h1>
+        <h2 class="page-description">{{ config.description }}</h2>
+      </div>
+    </div>
+
+    <a class="scroll-down icon-arrow-left" href="#content" data-offset="-45">
+      <span class="hidden">Scroll Down</span>
+    </a>
+  </header>
+{% endblock %}
+
+{% block navigator %}
+  {% if posts.paginator.count %}
+    <nav class="pagination" role="navigation">
+      {% if posts.has_previous %}
+        <a class="newer-posts" href="/blog/tag/{{ config.name }}/page/{{ posts.previous_page_number }}/">Newer Posts →</a>
+      {% endif %}
+
+      <span class="page-number">Page {{ posts.number }} of {{ posts.paginator.num_pages }}</span>
+
+      {% if posts.has_next %}
+        <a class="older-posts" href="/blog/tag/{{ config.name }}/page/{{ posts.next_page_number }}/">Older Posts →</a>
+      {% endif %}
+    </nav>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,35 @@
+.post-comment {
+  position: relative;
+  margin-bottom: 24px;
+  transition: all 0.2s ease-in-out 0s;
+}
+
+.post-comment-avatar {
+  margin-right: 12px;
+  border-radius: 3px;
+  display: block;
+  position: relative;
+  float: left;
+}
+
+.post-comment-body {
+  overflow: hidden;
+}
+
+.post-comment-name {
+  display: inline-block;
+  margin-bottom: 3px;
+  font-size: 15px;
+}
+
+.post-comment-date {
+  display: inline-block;
+  margin-left: 1em;
+  margin-bottom: 3px;
+  font-size: 13px;
+}
+
+.post-comment-content {
+  position: relative;
+  width: 100%;
+}

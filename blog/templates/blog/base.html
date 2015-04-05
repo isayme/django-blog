@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <title>{% block title %}独语者{% endblock %}</title>
+  <meta name="description" content="Blog">
+  <meta name="author" content="iSayme">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  {% load staticfiles %}
+  <link rel="stylesheet" href="{% static "css/screen.css" %}">
+  <link rel="stylesheet" href="{% static "css/custom.css" %}">
+  <link rel="stylesheet" type="text/css" href="//fonts.useso.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+  <link rel="icon" type="image/png" href="{% static "img/favicon.ico" %}">
+
+</head>
+<body class="home-template">
+  <div class="site-wrapper">
+    {% block header %}
+      <header class="main-header no-cover">
+        <div class="vertical">
+          <div class="main-header-content inner">
+            <h1 class="page-title">独语者</h1>
+            <h2 class="page-description">Think Before Speak</h2>
+          </div>
+        </div>
+
+        <a class="scroll-down icon-arrow-left" href="#content" data-offset="-45">
+          <span class="hidden">Scroll Down</span>
+        </a>
+      </header>
+    {% endblock %}
+
+    <main id="content" class="content" role="main">
+      {% block content %}
+        {% load django_markdown %}
+        {% load gravatar %}
+        {% for post in posts %}
+          <article class="post">
+            <header class="post-header">
+              <h2 class="post-title">
+                <a href="{{ post.get_absolute_url }}">
+                  {{ post.title }}
+                </a>
+              </h2>
+            </header>
+            <section class="post-excerpt">
+              {{ post.content|markdown }}
+              <p><a class="read-more" href="{{ post.get_absolute_url }}">&raquo;</a></p>
+            </section>
+            <footer class="post-meta">
+              <img class="author-thumb" src="{% gravatar_url post.author.email 250 %}" alt="" nopin="nopin">
+              <span>{{ post.author.username }}</span>
+              on {% for category in post.categories.all %}
+                  <a href="{{ category.get_absolute_url }}">{{ category.name }}</a>
+                  {% if not forloop.last %}, {% endif %}
+                 {% endfor %}
+              <div class="post-tag">Tagged: 
+                {% for tag in post.tags.all %}
+                  <a href="{{ tag.get_absolute_url }}">{{ tag.name }}</a>
+                  {% if not forloop.last %}, {% endif %}
+                {% endfor %}
+              </div>
+              <div class="post-date">{{ post.publish_time|date:'D M j, Y' }}</div>
+            </footer>
+          </article>
+        {% empty %}
+          <article class="post">
+            <header class="post-header">
+              <h2 class="post-title center">No Post Currently!</h2>
+            </header>
+          </article>
+        {% endfor %}
+      {% endblock %}
+
+      {% block navigator %}
+        {% if posts.paginator.count %}
+          <nav class="pagination" role="navigation">
+            {% if posts.has_previous %}
+              <a class="newer-posts" href="/blog/page/{{ posts.previous_page_number }}/">Newer Posts →</a>
+            {% endif %}
+
+            <span class="page-number">Page {{ posts.number }} of {{ posts.paginator.num_pages }}</span>
+
+            {% if posts.has_next %}
+              <a class="older-posts" href="/blog/page/{{ posts.next_page_number }}/">Older Posts →</a>
+            {% endif %}
+          </nav>
+        {% endif %}
+      {% endblock %}
+    </main>
+
+    <footer class="site-footer clearfix">
+      {% block footer %}
+        <section class="copyright"><a href="http://isayme.ghost.io">独语者</a> © 2015</section>
+        <section class="rss"><a href="/blog/rss/">RSS</a></section>
+        <section class="poweredby">Theme by <a href="https://ghost.org">Ghost</a></section>
+      {% endblock %}
+    </footer>
+  </div>
+
+  <script src="http://cdn.staticfile.org/jquery/2.1.1-rc2/jquery.min.js"></script>
+  <script type="text/javascript" src="{% static "js/jquery.fitvids.js" %}"></script>
+  <script type="text/javascript" src="{% static "js/index.js" %}"></script>
+
+</body>
+</html>
