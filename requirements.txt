@@ -1,2 +1,6 @@
+qiniu
 django-markdown
 django-gravatar2
+django-contrib-comments
+pytz
+Pillow

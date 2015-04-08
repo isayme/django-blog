@@ -47,7 +47,7 @@
               </h2>
             </header>
             <section class="post-excerpt">
-              {{ post.content|markdown }}
+              {{ post.content|markdown|truncatewords_html:30 }}
               <p><a class="read-more" href="{{ post.get_absolute_url }}">&raquo;</a></p>
             </section>
             <footer class="post-meta">

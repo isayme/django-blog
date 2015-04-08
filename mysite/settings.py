@@ -39,6 +39,10 @@ INSTALLED_APPS = (
 
     'django_gravatar',
     'django_markdown',
+
+    'django.contrib.sites',
+    'django_comments',
+
     'blog',
 )
 
@@ -92,3 +96,14 @@ STATICFILES_DIRS = (
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, "templates"),
 )
+
+# Qiniu Storage
+DEFAULT_FILE_STORAGE = 'blog.qiniu_storage.QiniuStorage'
+
+# comment
+SITE_ID = 1
+
+# gravatar
+GRAVATAR_DEFAULT_SECURE = False
+GRAVATAR_URL = 'http://gravatar.duoshuo.com/'
+

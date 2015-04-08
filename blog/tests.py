@@ -30,3 +30,40 @@ class TagTest(TestCase):
         self.assertEquals(Tag.objects.all().count(), 2)
         self.assertEquals(obj1.description, u'a python framework')
         self.assertNotEquals(obj2.description, u'result')
+
+
+from trie import Trie
+
+class TrieTest(TestCase):
+    def setUp(self):
+        self.trie = Trie()
+        self.trie.insert(u'测试1')
+        self.trie.insert(u'abcd')
+        self.trie.insert(u'5678')
+        self.trie.insert(u'你')
+
+
+    def test_exists(self):
+        self.assertEquals(self.trie.match(u'测试2'), False)
+        self.assertEquals(self.trie.match(u'测试1'), True)
+
+        self.assertEquals(self.trie.match(u'我'), False)
+        self.assertEquals(self.trie.match(u'你'), True)
+
+        self.assertEquals(self.trie.match(u'abcdefg'), True)
+        self.assertEquals(self.trie.match(u'567'), False)
+
+    def test_delete(self):
+        self.assertEquals(self.trie.delete(u'测试2'), False)
+        self.assertEquals(self.trie.match(u'测试1'), True)
+        self.assertEquals(self.trie.delete(u'测试1'), True)
+        self.assertEquals(self.trie.match(u'测试1'), False)
+
+        self.trie.insert(u'1234')
+        self.trie.insert(u'12345678')
+        self.trie.insert(u'123456789')
+        self.assertEquals(self.trie.delete(u'1234'), True)
+        self.assertEquals(self.trie.match(u'12345678'), True)
+
+        self.assertEquals(self.trie.delete(u'123456789'), True)
+        self.assertEquals(self.trie.match(u'12345678'), True)

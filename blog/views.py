@@ -65,7 +65,6 @@ def tag(req, tag, page_num=1):
 def post(req, year, month, path):
     try:
         post = Post.objects.get(slug=path)
-        comments = Comment.objects.filter(post=post)
     except:
         post = None
-    return render(req, 'blog/post.html', {'post': post, 'comments': comments})
+    return render(req, 'blog/post.html', {'post': post})

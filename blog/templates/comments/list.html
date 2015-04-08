@@ -1,0 +1,13 @@
+{% load gravatar %}
+
+{% for comment in comment_list %}
+
+  <div class="post-comment">
+    <img class="post-comment-avatar" src="{% gravatar_url comment.user_email 50 %}" />
+    <div class="post-comment-body">
+      <div class="post-comment-name">{{ comment.user_name }}</div>
+      <div class="post-comment-date">{{ comment.submit_date }}</div>
+      <pre><div class="post-comment-content">{{ comment.comment }}</div></pre>
+    </div>
+  </div>
+{% endfor %}

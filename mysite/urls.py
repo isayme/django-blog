@@ -7,8 +7,8 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^markdown/', include('django_markdown.urls')),
+    url(r'^comments/', include('django_comments.urls')),
+    url(r'^admin/', include(admin.site.urls)),
 
     url(r'^blog/', include('blog.urls')),
-
-    url(r'^admin/', include(admin.site.urls)),
 )
