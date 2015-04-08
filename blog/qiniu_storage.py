@@ -8,8 +8,6 @@ from django.conf import settings
 
 from qiniu import Auth, BucketManager, put_data
 
-print os.environ.get('QINIU_ACCESS_KEY')
-
 class QiniuStorage(Storage):
     def __init__(self):
         self.ak = os.environ.get('QINIU_ACCESS_KEY', getattr(settings, 'QINIU_ACCESS_KEY', None))
