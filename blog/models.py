@@ -35,7 +35,7 @@ class PostImage(models.Model):
     image = models.ImageField(null=True)
 
     def thumb(self):
-        return u'<a href="{0}"><img src="{0}" /></a>'.format(self.image.url)
+        return u'<a href="{0}"><img src="{0}" style="max-height: 150px" /></a>'.format(self.image.url)
     thumb.allow_tags = True
     thumb.short_description = 'Thumbnail'
 
