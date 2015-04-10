@@ -79,13 +79,13 @@
         {% if posts.paginator.count %}
           <nav class="pagination" role="navigation">
             {% if posts.has_previous %}
-              <a class="newer-posts" href="/blog/page/{{ posts.previous_page_number }}/">Newer Posts →</a>
+              <a class="newer-posts" href="{% url 'page' posts.previous_page_number %}">Newer Posts →</a>
             {% endif %}
 
             <span class="page-number">Page {{ posts.number }} of {{ posts.paginator.num_pages }}</span>
 
             {% if posts.has_next %}
-              <a class="older-posts" href="/blog/page/{{ posts.next_page_number }}/">Older Posts →</a>
+              <a class="older-posts" href="{% url 'page' posts.next_page_number %}">Older Posts →</a>
             {% endif %}
           </nav>
         {% endif %}
@@ -95,7 +95,7 @@
     <footer class="site-footer clearfix">
       {% block footer %}
         <section class="copyright"><a href="http://isayme.ghost.io">独语者</a> © 2015</section>
-        <section class="rss"><a href="/blog/rss/">RSS</a></section>
+        <section class="rss"><a href="{% url 'rss' %}">RSS</a></section>
         <section class="poweredby">Theme by <a href="https://ghost.org">Ghost</a></section>
       {% endblock %}
     </footer>
